@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>中国联通免费领取300M流量</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="楊遠徵の工具箱" />
+	<meta name="keywords" content="中國遠徵,工具箱,联通流量" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="https://s.ssss.fun/ICON/Z.ico">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://womade.gitee.io/tools/cu/bootstrap.min.css">
+	<link rel="stylesheet" href="https://womade.gitee.io/tools/cu/animate.css">
+	<link rel="stylesheet" href="https://womade.gitee.io/tools/cu/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="https://womade.gitee.io/tools/cu/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="https://womade.gitee.io/tools/cu/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	 <div class="container">
+                 <div class="row">
+	 <div class="col-md-12 text-center">
+                 <br>
+                 一天可领3次，一次30MB，每月最多10次
+                 <br>
+                 ⭐┄┅┄共计300MB，有效期3个月┄┅┄⭐
+                 <br>
+                 详情可登录联通手机营业厅/官网进行查询
+                 <br>
+	 </div></div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+
+					<!-- Start Form -->
+					<div action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+						<h2>中国联通用户免费领取流量</h2>
+						<div class="form-group">
+							<label for="phones" class="sr-only">phones</label>
+							<input type="text" class="form-control" id="phones" placeholder="输入手机号码" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label for="codes" class="sr-only">codes</label>
+							<input type="text" class="form-control" id="codes" placeholder="输入验证码" autocomplete="off">
+						</div>
+						
+						<div class="form-group">
+							<input type="submit" id="cc" value="获取验证码" class="btn btn-primary">
+							<input type="submit" id="dd" value="领取流量" class="btn btn-primary">
+						</div>
+	
+					</div>
+					
+					<!-- END Form -->
+
+				</div>
+			</div>
+			<div class="row" style="padding-top: 240px; clear: both;">
+				<div class="col-md-12 text-center"><p><small>© 中國遠徵</small></p></div>
+			</div>
+		</div>
+	
+	<!-- jQuery -->
+	<script src="https://womade.gitee.io/tools/cu/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://womade.gitee.io/tools/cu/bootstrap.min.js"></script>
+	<!-- Placeholder -->
+	<script src="https://womade.gitee.io/tools/cu/jquery.placeholder.min.js"></script>
+	<!-- Waypoints -->
+	<script src="https://womade.gitee.io/tools/cu/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="https://womade.gitee.io/tools/cu/main.js"></script>
+                <!-- YUANZHENG'S JS -->
+                <script type="text/javascript" src="https://js.users.51.la/20838387.js"></script>
+	
+	<script>
+		$('#cc').click(function(){
+			var phone = $('#phones').val();
+			$.ajax({
+				url:'https://m.10010.com/god/AirCheckMessage/sendCaptcha',
+				type:'post',
+				dataType:'json',
+				data:{
+					phoneVal:phone,
+					type:21
+				},
+				success:function(datas){
+					console.log(datas);
+                    alert('发送成功，请间隔60s提交一次。');
+				},
+				error: function (err) {
+                    console.log(err);
+					alert('出现未知错误，请稍后再试。');
+				},
+			})
+		});
+
+        $('#dd').click(function(){
+            var phone = $('#phones').val();
+            var code = $('#codes').val();
+            $.ajax({
+                url:'https://m.10010.com/god/qingPiCard/flowExchange',
+                data:{
+                    number:phone,
+					type:21,
+                    captcha:code
+                },
+                success:function(datas){
+					console.log(datas);
+                    alert('已提交领取申请，请留意到账情况。');
+				},
+				error: function (err) {
+					console.log(err);
+                    alert('出现未知错误，请稍后再试。');
+				},
+            });
+        });
+	</script>
+
+	</body>
+</html>
