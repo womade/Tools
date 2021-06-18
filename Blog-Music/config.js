@@ -10,7 +10,7 @@ docute.init({
             apiKey: '',
             indexName: 'aplayer',
             tags: ['english', 'zh-Hans'],
-            url: 'https://s.ssss.fun'
+            url: 'https://i.ssss.fun'
         }),
         player()
     ]
