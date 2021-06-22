@@ -4,7 +4,7 @@ $(function () {
         }, "JSON"),
         function () {
             var a, b = document.createElement("script");
-            b.src = "https://js.users.51.la/20838387.js", a = document.getElementsByTagName("script")[0], a.parentNode.insertBefore(b, a)
+            b.src = "https://cdn.ssss.fun/z/3/t_ssss_fun.js", a = document.getElementsByTagName("script")[0], a.parentNode.insertBefore(b, a)
         }(), window.onscroll = function () {
             var a = 0,
                 b = 0,
