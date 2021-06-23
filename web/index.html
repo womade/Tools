@@ -5,42 +5,42 @@
 <title>HTML/CSS/JS 在线工具 | 中國遠徵</title>
 <link rel="shortcut icon" href="https://s.ssss.fun/ICON/Z.ico" />
 <link rel="dns-prefetch" href="https://s.w.org/">
-<link rel="stylesheet" id="wpProQuiz_front_style-css" href="https://womade.gitee.io/Tools/web/wpProQuiz_front.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpProQuiz_front_style-css" href="wpProQuiz_front.min.css" type="text/css" media="all">
 <link rel="canonical" href="https://t.ssss.fun/web">
 <meta name="keywords" content="HTML/CSS/JS 在线工具,中國遠徵">
 <meta name="description" content="通过 HTML/CSS/JS 在线工具，你可以在线输入 HTML 、CSS、JS 代码，该工具能实时显示运行效果。">
    
-		<script src="https://womade.gitee.io/Tools/web/codemirror.min.js"></script>
-		<script src="https://womade.gitee.io/Tools/web/simple.min.js"></script>
-		<link rel="stylesheet" href="https://womade.gitee.io/Tools/web/codemirror.min.css">		
-		<script src="https://womade.gitee.io/Tools/web/htmlmixed.js"></script>		
-		<script src="https://womade.gitee.io/Tools/web/css.js"></script>		
-		<script src="https://womade.gitee.io/Tools/web/javascript.js"></script>		
-		<script src="https://womade.gitee.io/Tools/web/xml.js"></script>				
-		<script src="https://womade.gitee.io/Tools/web/format.js"></script>
-		<link href="https://womade.gitee.io/Tools/web/normalize.min.css" rel="stylesheet">
+		<script src="codemirror.min.js"></script>
+		<script src="simple.min.js"></script>
+		<link rel="stylesheet" href="codemirror.min.css">		
+		<script src="htmlmixed.js"></script>		
+		<script src="css.js"></script>		
+		<script src="javascript.js"></script>		
+		<script src="xml.js"></script>				
+		<script src="format.js"></script>
+		<link href="normalize.min.css" rel="stylesheet">
 		
     <!-- Bootstrap Core CSS -->
-    <link href="https://womade.gitee.io/Tools/web/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="https://womade.gitee.io/Tools/web/modern-business.css" rel="stylesheet">
+    <link href="modern-business.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!--[if lt IE 9]>
-        <script src="https://womade.gitee.io/Tools/web/html5.min.js"></script>
-        <script src="https://womade.gitee.io/Tools/web/respond.min.js"></script>
+        <script src="html5.min.js"></script>
+        <script src="respond.min.js"></script>
     <![endif]-->
     <!-- PHP 代码 -->
-    <link rel="stylesheet" href="https://womade.gitee.io/Tools/web/style.css"> 
+    <link rel="stylesheet" href="style.css"> 
    
 
 
- <script src="https://womade.gitee.io/Tools/web/jquery.min.js"></script>
+ <script src="jquery.min.js"></script>
 
-<script src="https://womade.gitee.io/Tools/web/clipboard.min.js"></script>
+<script src="clipboard.min.js"></script>
 
 </head>
 
@@ -95,24 +95,24 @@
 <!-- 打赏 start -->
 <div class="hide_box"></div>
 <div class="shang_box">
-    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="https://womade.gitee.io/Tools/web/close.jpg" alt="取消"></a>
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="close.jpg" alt="取消"></a>
     
     <div class="shang_tit">
         <p>感谢您的支持，我会继续努力的!</p>
     </div>
     <div class="shang_payimg">
-        <img src="https://womade.gitee.io/Tools/web/dashang/allpay.jpg" alt="扫码支持" title="扫一扫">
+        <img src="dashang/allpay.jpg" alt="扫码支持" title="扫一扫">
     </div>
         <div class="pay_explain">扫码打赏，你说多少就多少<br><span style="font-size: 16px;font-weight: bold;">也可以直接加入<a href="https://jq.qq.com/?_wv=1027&k=CITQU6D6" target="_blank" style="color: red;">我的圈子</a></span></div>
     <div class="shang_payselect">
        
         <div class="pay_item checked" data-id="weipay">
             <span class="radiobox"></span>
-            <span class="pay_logo"><img src="https://womade.gitee.io/Tools/web/wechat.jpg" alt="微信"></span>
+            <span class="pay_logo"><img src="wechat.jpg" alt="微信"></span>
         </div>
         <div class="pay_item " data-id="alipay">
             <span class="radiobox"></span>
-            <span class="pay_logo"><img src="https://womade.gitee.io/Tools/web/alipay.jpg" alt="支付宝"></span>
+            <span class="pay_logo"><img src="alipay.jpg" alt="支付宝"></span>
         </div>
     </div>
     <div class="shang_info">
@@ -126,7 +126,7 @@ $(function(){
     $(".pay_item").click(function(){
         $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
         var dataid=$(this).attr('data-id');
-        $(".shang_payimg img").attr("src","https://womade.gitee.io/Tools/web/dashang/"+dataid+"img.png");
+        $(".shang_payimg img").attr("src","dashang/"+dataid+"img.png");
         $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
     });
 });
@@ -138,12 +138,12 @@ function dashangToggle(){
 <!-- 打赏 end -->
 
 
-<div class="container"><link rel="stylesheet" href="https://womade.gitee.io/Tools/web/jqx.base.css" type="text/css">
-<script type="text/javascript" src="https://womade.gitee.io/Tools/web/jqxcore.js"></script>
-<script type="text/javascript" src="https://womade.gitee.io/Tools/web/jqxsplitter.js"></script>
-<script src="https://womade.gitee.io/Tools/web/closetag.min.js"></script>
-<script src="https://womade.gitee.io/Tools/web/closebrackets.js"></script>
-<script src="https://womade.gitee.io/Tools/web/placeholder.js"></script>
+<div class="container"><link rel="stylesheet" href="jqx.base.css" type="text/css">
+<script type="text/javascript" src="jqxcore.js"></script>
+<script type="text/javascript" src="jqxsplitter.js"></script>
+<script src="closetag.min.js"></script>
+<script src="closebrackets.js"></script>
+<script src="placeholder.js"></script>
 <style type="text/css">
 .container{ 
 	width: 100%;
@@ -254,7 +254,7 @@ table td {
 								</i>
 							</a>
 						</div><div class="jqx-splitter-splitbar-horizontal jqx-fill-state-normal" style="width: 100%; height: 5px; top: 393px;"><div class="jqx-splitter-collapse-button-horizontal jqx-fill-state-pressed" style="height: 5px; width: 45px; position: relative; left: 50%; top: 0px; margin-left: -23px; margin-top: 0px;"></div></div>
-						<div id="output" class="jqx-widget-content jqx-splitter-panel jqx-reset" style="left: 0px; top: 400px; width: 100%; height: 49.1083%;"><iframe frameborder="0" id="iframeResult" src="https://womade.gitee.io/Tools/web/saved_resource.html"></iframe></div>
+						<div id="output" class="jqx-widget-content jqx-splitter-panel jqx-reset" style="left: 0px; top: 400px; width: 100%; height: 49.1083%;"><iframe frameborder="0" id="iframeResult" src="saved_resource.html"></iframe></div>
 					</div>
 				</div>
 			</div>
@@ -401,16 +401,16 @@ $(document).ready(function () {
 			if(_thisvar=='more'){
 				$("#libs").modal("show");
 			} else if(_thisvar == 'jq') {
-				_html_script_code = "<script src=\"https://womade.gitee.io/Tools/web/jquery.min.js\"><\/script>\n";
+				_html_script_code = "<script src=\"jquery.min.js\"><\/script>\n";
 				html_editor.getDoc().setValue(_html_script_code + _inithtmlcode);
 			}else if(_thisvar == 'bs') {
-				_html_script_code = "<link rel=\"stylesheet\" href=\"https://womade.gitee.io/Tools/web/bootstrap.min.css\">\n<script src=\"https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js\"><\/script>\n<script src=\"https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js\"><\/script>\n";
+				_html_script_code = "<link rel=\"stylesheet\" href=\"bootstrap.min.css\">\n<script src=\"https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js\"><\/script>\n<script src=\"https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js\"><\/script>\n";
 				html_editor.getDoc().setValue(_html_script_code + _inithtmlcode);
 			}else if(_thisvar == 'ag') {
-				_html_script_code = "<script src=\"https://womade.gitee.io/Tools/web/angular.min.js\"><\/script>\n";
+				_html_script_code = "<script src=\"angular.min.js\"><\/script>\n";
 				html_editor.getDoc().setValue(_html_script_code + _inithtmlcode);
 			}else if(_thisvar == 'vue') {
-				_html_script_code = "<script src=\"https://womade.gitee.io/Tools/web/vue.min.js\"><\/script>\n";
+				_html_script_code = "<script src=\"vue.min.js\"><\/script>\n";
 				html_editor.getDoc().setValue(_html_script_code + _inithtmlcode);
 			}else if(_thisvar == 'fa') {
 				_html_script_code = "<link rel=\"stylesheet\" href=\"https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css\">\n";
@@ -618,6 +618,6 @@ function autodivheight(){
 
 </div>
 
-<script src="https://womade.gitee.io/Tools/web/bootstrap.min.js"></script>
+<script src="bootstrap.min.js"></script>
 
 </body></html>
