@@ -1,0 +1,73 @@
+@charset "utf-8";
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#wrapper {
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -400px;
+  margin-top: -400px;
+  border: 1px solid #999999;
+  background-color: #fff;
+}
+
+#inputImg, #inputImg_label {
+  width: 100px;
+  height: 40px;
+  border: 4px solid #999999;
+  border-radius: 10px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+#inputImg {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  margin-left: -54px;
+  top: 0;
+}
+
+#inputImg_label {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.icon-shangchuan {
+  font-size: 30px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.choseImg {
+  position: relative;
+  width: 100%;
+  height: 122px;
+  overflow: hidden;
+}
+
+.colorShow {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 52px;
+}
+
+.showRGBA, .showRHex {
+  width: 200px;
+  height: 40px;
+  border: 1px solid #999999;
+  margin: 6px 10px;
+  font-size: 14px;
+  line-height: 40px;
+}
+.showRGBA > span, .showRHex > span {
+  margin-left: 4px;
+}
