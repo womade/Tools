@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <title>在线屏幕录制 - 在线录屏/录像/录音 - 录制视频为 GIF - 在线工具</title>
+        <meta name="description" content="无需下载软件，打开即可进行视频/屏幕/音频录制"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript">
+            var targetProtocol = "https:";
+            if (window.location.protocol != targetProtocol) {
+                window.location.href = targetProtocol + window.location.href.substring(window.location.protocol.length);
+            }
+        </script>
+        <script src="libs/gif-recorder.js"></script>
+        <script src="libs/RecordRTC.min.js"></script>
+        <script src="libs/polyfill.min.js"></script>
+        <script src="libs/EBML.js"></script>
+        <script src="libs/adapter-latest.js"></script>
+        <script src="libs/DetectRTC.js"></script>
+        <link href="libs/getHTMLMediaElement.css" rel="stylesheet">
+        <script src="libs/getHTMLMediaElement.js"></script>
+        <style>
+            * {
+                -webkit-text-size-adjust: none;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI","Microsoft YaHei","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            }
+
+            body {
+                text-align: center;
+                overflow-x: hidden;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 8px 12px 9px;
+                background-image: -webkit-gradient(linear, left top, left bottom, color-stop(8%, #ffffff), color-stop(97%, #f2f2f7));
+                background-image: linear-gradient(-180deg, #ffffff 8%, #f2f2f7 97%);
+                border: 1px solid #e9eaec;
+                -webkit-box-shadow: 0 3px 4px 0 rgba(44,71,146,.32), inset 0 -2px 0 0 #e1e3e8;
+                box-shadow: 0 3px 4px 0 rgba(44,71,146,.32), inset 0 -2px 0 0 #e1e3e8;
+                cursor: pointer;
+                outline: none;
+                color: #3b426b;
+                font-size: 13px;
+                text-align: center;
+                font-weight: 500;
+                letter-spacing: .7px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -ms-border-radius: 3px;
+                -o-border-radius: 3px;
+                border-radius: 3px;
+                -webkit-transition: all .2s;
+                -moz-transition: all .2s;
+                -ms-transition: all .2s;
+                -o-transition: all .2s;
+                transition: all .2s;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            .btn:active {
+                background-image: -webkit-gradient(linear, left bottom, left top, color-stop(3%, #f9f9fc), color-stop(92%, #f2f2f7));
+                background-image: linear-gradient(0deg, #f9f9fc 3%, #f2f2f7 92%);
+                -webkit-box-shadow: 0 3px 4px 0 rgba(44,71,146,.32);
+                box-shadow: 0 3px 4px 0 rgba(44,71,146,.32);
+                -webkit-transform: scale(0.98);
+                transform: scale(1);
+                transition: all .4s;
+            }
+
+            .btn:hover {
+                -webkit-box-shadow: 0 8px 20px 0 rgba(44, 71, 146, .4);
+                box-shadow: 0 8px 20px 0 rgba(44, 71, 146, .4);
+                -webkit-transform: scale(1.02);
+                transform: scale(1.01) translateY(-2px);
+            }
+
+            .btn:disabled {
+                cursor: not-allowed;
+                background: #d8d8d8;
+                border: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            .btn-primary {
+                color: #fff;
+                border-color: rgba(51, 100, 237,.35);
+                background: #4172fa;
+                background: linear-gradient(180deg, #648CFF 0%, #4172FA 100%);
+                -webkit-box-shadow: 0 3px 4px 0 rgba(44,71,146,.32), inset 0 -2px 0 0 #3262e6;
+                box-shadow: 0 3px 4px 0 rgba(44,71,146,.32), inset 0 -2px 0 0 #3262e6;
+            }
+
+            .btn-primary:active {
+                background-image: -webkit-gradient(linear, left bottom, left top, from(#527ffc), color-stop(96%, #4172fa));
+                background-image: linear-gradient(0deg, #527ffc 0%, #4172fa 96%);
+            }
+
+            .btn-danger {
+                color: #fff;
+                border-color: rgba(244, 67, 54,.35);
+                background: -webkit-gradient(linear,left top,left bottom,from(#ff7764),to(#ff4539));
+                background: linear-gradient(180deg,#ff7764 0%,#ff4539 100%);
+                -webkit-box-shadow: 0 3px 4px 0 rgba(44,71,146,.32), inset 0 -2px 0 0 #d8372b;
+                box-shadow: 0 3px 4px 0 rgba(44,71,146,.32), inset 0 -2px 0 0 #d8372b;
+            }
+
+            .btn-danger:active {
+                background-image: -webkit-gradient(linear, left bottom, left top, from(#ff7764), color-stop(96%, #ff4539));
+                background-image: linear-gradient(0deg, #ff7764 0%, #ff4539 96%);
+            }
+
+            .btn > .svg-icon {
+                height: 18px;
+                vertical-align: text-top;
+                transition: all .2s;
+            }
+
+            .btn:hover > .svg-icon {
+                transform: scale(1.1)
+            }
+
+            label {
+                color: #5d6494;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            select {
+                padding: 8px 10px;
+                margin-right: 12px;
+                border-radius: 3px;
+                color: #858ab4;
+                background: #fff;
+                border: 1px solid #dce1e6;
+                box-shadow: 0 2px 2px 0 rgba(44,71,146,.17);
+                outline: none;
+                cursor: pointer;
+            }
+
+            select > option {
+                line-height: 30px;
+                color: #3b426b;
+            }
+
+            select > option:disabled {
+                display: none;
+                color: #eee;
+            }
+
+            label > select {
+                margin-left: 5px;
+            }
+
+            .app-logo {
+                width: 160px;
+                margin-top: 40px;
+                padding-left: 26px;
+            }
+
+            .app-title {
+                margin-top: 0;
+                font-size: 36px;
+                font-weight: normal;
+                color: #3b426b;
+            }
+
+            .main {
+            }
+
+            .options label {
+                display: inline-block;
+            }
+
+            .options select,.more-options select {
+                margin-bottom: 15px;
+            }
+
+            #show-more-option {
+                outline: none;
+                cursor: pointer;
+                border-radius: 3px;
+                padding: 2px 5px;
+                margin-left: -2px;
+                color: #5d6494;
+                background: transparent;
+                font-size: 13px;
+                border: none;
+                transition: background .3s ease-out;
+            }
+
+            #show-more-option:hover {
+                color: #3b426b;
+                background: rgba(4,15,26,.08);
+            }
+
+            .more-options {
+                visibility: hidden;
+                margin-top: 12px;
+            }
+
+            .control-btns {
+                margin: 40px auto;
+            }
+
+            #btn-start-recording {
+                padding: 14px 38px;
+            }
+
+            #btn-pause-recording {
+                margin-left: 30px;
+            }
+
+            .export-btns {
+                visibility: hidden;
+                margin-top: 20px;
+            }
+
+            #save-to-disk {
+                margin-right: 15px;
+            }
+
+            #recording-player {
+                visibility: hidden;
+                margin: 25px auto 20px;
+            }
+
+            .media-container {
+                max-width: 100%;
+                min-height: 120px;
+                background: #000;
+                border: none;
+                box-shadow: 0px 2px 12px rgba(44,71,146,.2);
+            }
+
+            .media-box {
+                border: none;
+                margin: 0;
+            }
+
+            .media-box > h2 {
+                text-shadow: 0 0 2px #001021!important;
+            }
+
+            footer {
+                color: #e1e7ff;
+            }
+
+            footer a {
+                padding: 2px 5px;
+                color: #5d6494;
+                font-size: 13px;
+                text-decoration: none;
+            }
+
+            footer a:hover {
+                border-radius: 3px;
+                color: #3b426b;
+                background: rgba(4,15,26,.08);
+                transition: background .3s ease-out;
+            }
+        </style>
+    </head>
+    <body>
+        <article>
+            <header>
+                <img class="app-logo" src="logo.svg"/>
+                <h1 class="app-title">在线屏幕录制</h1>
+            </header>
+            <section class="main">
+                <div class="header">
+                    <div class="options">
+                        <label>
+                            录制内容
+                            <select class="recording-media">
+                                <option value="record-audio-plus-video">摄像头 + 麦克风</option>
+                                <option value="record-audio">麦克风</option>
+                                <option value="record-screen" selected>整个屏幕</option>
+                                <option value="record-audio-plus-screen">整个屏幕 + 麦克风</option>
+                            </select>
+                        </label>
+                        <label>
+                            格式
+                            <select class="media-container-format">
+                                <option value="default">默认</option>
+                                <option value="vp8">webm (vp8)</option>
+                                <option value="vp9">webm (vp9)</option>
+                                <option value="h264">mp4 (h264)</option>
+                                <option value="mkv">mkv</option>
+                                <option value="opus">webm (opus)</option>
+                                <option value="ogg">webm (ogg)</option>
+                                <option value="pcm">wav (pcm)</option>
+                                <option value="gif">gif</option>
+                                <option value="whammy">webm (whammy)</option>
+                                <option value="WebAssembly">webm (WebAssembly)</option>
+                            </select>
+                        </label>
+                        <button id="show-more-option">更多设置</button>
+                        <label for="chk-timeSlice" title="Use intervals based recording" style="display: none;">
+                            <input type="checkbox" id="chk-timeSlice">定时录制
+                        </label>
+                    </div>
+                    <div class="more-options">
+                        <select class="media-resolutions">
+                            <option value="default">默认分辨率</option>
+                            <option value="1920x1080">1080p</option>
+                            <option value="1280x720">720p</option>
+                            <option value="640x480">480p</option>
+                            <option value="3840x2160">4K Ultra HD (3840x2160)</option>
+                        </select>
+                        <select class="media-framerates">
+                            <option value="default">默认帧率</option>
+                            <option value="5">5 fps</option>
+                            <option value="15">15 fps</option>
+                            <option value="24">24 fps</option>
+                            <option value="30">30 fps</option>
+                            <option value="60">60 fps</option>
+                        </select>
+                        <select class="media-bitrates">
+                            <option value="default">默认比特率</option>
+                            <option value="8000000000">1 GB bps</option>
+                            <option value="800000000">100 MB bps</option>
+                            <option value="8000000">1 MB bps</option>
+                            <option value="800000">100 KB bps</option>
+                            <option value="8000">1 KB bps</option>
+                            <option value="800">100 Bytes bps</option>
+                        </select>
+                        <br/>
+                        <br/>
+                        <label for="chk-fixSeeking" title="Fix video seeking issues?">
+                            <input type="checkbox" id="chk-fixSeeking">Fix Seeking Issues?
+                        </label>
+                    </div>
+                    <div class="control-btns">
+                        <button id="btn-start-recording" class="btn btn-primary">开始录制</button>
+                        <button id="btn-pause-recording" class="btn" style="display: none">暂停</button>
+                    </div>
+                </div>
+                <div class="export-btns">
+                    <button id="save-to-disk" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" class="svg-icon" fill="#fff">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path>
+                        </svg>
+                        保存
+                    </button>
+                    <button id="open-new-tab" class="btn">在新窗口打开</button>
+                </div>
+                <div id="recording-player"></div>
+            </section>
+        </article>
+        <footer>
+            <a target="_blank" href="/">在线工具</a>
+            |<a target="_blank" rel="nofollow" href="https://i.ssss.fun/">中國遠徵</a>
+        </footer>
+        <script src="app.min.js"></script>
+    </body>
+</html>

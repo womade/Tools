@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Base64编码/解码器 在线解码 - 中國遠徵</title>
+    <link rel="stylesheet" href="https://cdn.ssss.fun/bootstrap/5.0.1/css/bootstrap.min.css">
+    <script src="https://cdn.ssss.fun/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdn.ssss.fun/bootstrap/5.0.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    #code {
+        text-align: left;
+    }
+    </style>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: 'microsoft yahei',sans-serif;
+    }
+
+    .c {
+        text-align: left;
+    }
+
+    body,
+    td,
+    th {
+        font-size: 12px;
+    }
+
+    a:link {
+        color: #666;
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: #666;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: #666;
+    }
+
+    a:active {
+        text-decoration: none;
+        color: #F00;
+    }
+    </style>
+</head>
+
+<body>
+    <script type=text/javascript src="./Base64.js"></script>
+    <center>
+        <h3 style="font-size: 21px; line-height: 120px; font-weight:bold;">BASE64加密、解密</h3>
+        <form id="form1" name="form1" method="post" action="">
+            <textarea class="form-control" name="src" id="src" cols="80" rows="6" style="max-width:600px; width:calc(100% - 20px); height:100px;"></textarea>
+            <br>
+            <p class="tcenter">
+                <label>
+                    <input type="checkbox" value="hex" name="opt" id="opt" class="form-check-input" />解码结果以16进制显示</label><br>
+                <input onclick="doEncode();" type="button" value="编码" name="encode" class="button btn btn-primary" /> &nbsp;
+                <input onclick="doDecode();" type="button" value="解码" name="decode" class="button btn btn-success" />
+            </p>
+            <p class="medium">Base64编码或解码结果：</p>
+            <textarea name="dest" id="dest" class="form-control" cols="80" rows="6" style="max-width:600px; width:calc(100% - 20px); height:100px;" readonly></textarea>
+        </form>
+        <br><br>
+        
+        <div class="alert alert-info" role="alert" style="max-width:600px; width:calc(100% - 20px); ">
+  <h4 class="alert-heading">Base64编码说明</h4>
+  <p>Base64编码要求把3个8位字节（3*8=24）转化为4个6位的字节（4*6=24），之后在6位的前面补两个0，形成8位一个字节的形式。 如果剩下的字符不足3个字节，则用0填充，输出字符使用'='，因此编码后输出的文本末尾可能会出现1或2个'='。</p>
+  <hr>
+  <p class="mb-0">为了保证所输出的编码位可读字符，Base64制定了一个编码表，以便进行统一转换。编码表的大小为2^6=64，这也是Base64名称的由来。</p>
+</div>
+
+    </center>
+</body>
+
+</html>

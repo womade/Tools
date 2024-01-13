@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>视频转GIF在线制作工具</title>
+<meta name="keywords" content="视频转gif,视频转gif在线制作,视频转gif软件,视频转gif工具,在线视频转gif">
+<meta name="description" content="中國遠徵提供视频转GIF动态图片在线制作软件,在线播放视频免费转GIF高清动图工具,视频转GIF动图转换器">
+<link rel="stylesheet" href="./css/common.css" />
+<link rel="stylesheet" href="./css/cut.min.css" />
+</head>
+<body>
+<div class="com-wrap com-header">
+    <div class="com-main">
+        <div class="com-nav" id="Z-nav">
+            <ul>
+            	<li><a href="https://s.ssss.fun">首页<span class="nav-line"></span></a></li>
+        		<li class="focus"><a href="https://t.ssss.fun/gif/video.html">GIF工具<span class="nav-line"></span></a></li>
+            </ul>
+        </div>
+    	<h1 class="com-logo"><a href="https://t.ssss.fun/gif/">GIF工具</a></h1>
+    </div>
+</div>
+<div class="com-wrap com-tools-list" id="Z-toolList">
+    <div class="com-main">
+        <ul>
+            <!--<li ><a href="https://t.ssss.fun/gif/compress.html">GIF压缩</a></li>-->
+             <li ><a href="https://t.ssss.fun/gif/video.html">视频转GIF</a></li>
+             <li ><a href="https://t.ssss.fun/gif/compose.html">GIF合成</a></li>
+             <li class="focus"><a href="https://t.ssss.fun/gif/cut.html">GIF裁剪</a></li>
+        </ul>
+    </div>
+</div>
+<div class="com-wrap com-body">
+   <div class="com-main cut clearfix" id="Z-cutContainer">
+    <div class="cut-upload-wrap cut-model1">
+     <div class="cut-upload-container">
+      <div class="cut-upload-main">
+       <div class="cut-upload-btn">
+        上传图片
+       </div>
+       <input type="file" accept="image/gif,image/png,image/jpeg,image/jpg" class="cut-upload-file com-input-avatar" id="Z-uploadBtn" />
+      </div>
+      <div class="cut-upload-tip">
+       请上传50M以内的图片!&nbsp;&nbsp;支持GIF、PNG、JPG、JPEG
+      </div>
+     </div>
+    </div>
+    <div class="cut-model2">
+     <div class="com-options">
+      <div class="opts-item">
+       <dl>
+        <dt>
+         规格：
+        </dt>
+        <dd class="clearfix" id="Z-widthSelect">
+         <span data-percent="0" class="active">自动</span>
+         <span data-percent="1">头像(1:1)</span>
+         <span data-percent="1.3333333333333333">壁纸(4:3)</span>
+         <span data-percent="0.7146892655367232">1寸证件照</span>
+         <input type="number" class="Z-widthInput" placeholder="自定义宽度" min="1" />
+         <input type="number" class="Z-heightInput" placeholder="自定义高度" min="1" />
+        </dd>
+       </dl>
+      </div>
+     </div>
+     <div class="com-worker">
+      <div class="clearfix">
+       <div class="cut-source">
+        <div class="cut-source-block" id="Z-sourceBlock">
+         <img src="./img/upload-loading.gif" class="cut-source-img Z-previewImage" />
+        </div>
+       </div>
+       <div class="cut-preview" id="Z-preview">
+        <div class="cut-preview-hole">
+         <img src="./img/upload-loading.gif" class="cut-preview-img Z-previewImage" />
+        </div>
+       </div>
+      </div>
+      <div class="cut-info" id="Z-cutInfo"></div>
+      <div class="cut-btn factory-btns clearfix">
+       <div class="btn style2 disabled" id="Z-makerBtn">
+        裁剪
+       </div>
+       <div class="btn style1 disabled" id="Z-uploadAgain">
+        重新上传
+       </div>
+      </div>
+      <div class="view-list clearfix">
+       <ul id="Z-resultList"></ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+<div class="com-wrap com-footer">
+  <input type="hidden" id="level" name="level" value="" />
+  <div class="com-main">© 中國遠徵
+  </div>
+</div>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/common2.min.js"></script>
+<script src="./js/cut.min.js"></script>
+
+</body>
+</html>

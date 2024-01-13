@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>联通用户免费领取流量</title>
+<link rel="shortcut icon" href="https://s.ssss.fun/ICON/Z.ico">
+<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+<script type="text/javascript" src="//cdn.ssss.fun/z/3/t_ssss_fun.js"></script>
+</head>
+<style type="text/css">
+	body{
+		background: #F2F2F2;
+	}
+	.layui-card{
+		margin-top: 60px;
+		border-radius: 20px;
+	}
+	@media screen and (min-width: 468px) {
+		.layui-card{
+			width: 360px;
+			margin: 60px auto 0;
+		}
+	}
+	.layui-input{
+		border-width: 1px;
+		border-radius: 6px;
+		font-size: 16px;
+		font-weight: 500;
+	}
+	.layui-card-header{
+		font-size: 20px;
+		text-align: center;
+		height: 60px;
+		line-height: 60px;
+		font-weight: 600;
+	}
+	.layui-form-item{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.copy a{
+		color: #1E9FFF;
+	}
+
+	.copy{
+		margin-top: 40px;
+		text-align: center;
+		color: #c2c2c2;
+	}
+	.nav{
+		margin-top: 60px;
+		text-align: center;
+	}
+	.nav p{
+		display: inline-block;
+		margin-right: 20px;
+		font-size: 16px;
+	}
+</style>
+<body>
+	<div class="layui-container">
+		<ul class="nav layui-clear">
+			<p>一天可领3次，一次30MB，每月最多10次</p>
+			<p>⭐┄┅┄共计300MB，有效期3个月┄┅┄⭐</p>
+			<p>详情可登录联通手机营业厅/官网进行查询</p>
+		</ul>
+
+		<div class="layui-card">
+		  	<div class="layui-card-header">联通用户免费领取流量</div>
+		  	<div class="layui-card-body">
+		  		<div class="layui-form-item">
+			  		<input type="text" name="phone" lay-verify="required" placeholder="请输入手机号码" value="17688999938" autocomplete="off" class="layui-input">
+			  	</div>
+			  	<div class="layui-form-item">
+		  			<input type="text" name="code" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+		  		</div>
+		  		<div class="layui-form-item">
+		            <a id="getcode" href="javascript:void(0);" class="layui-btn layui-btn-normal">获取验证码</a>
+            		<a id="getll" href="javascript:void(0);" class="layui-btn layui-btn-danger layui-btn-disabled">领取流量</a>
+		  		</div>
+		  	</div>
+		</div>
+		<div class="copy">
+			©  <a href="https://s.ssss.fun">中國遠徵</a>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.ssss.fun/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use(['layer'], function(){
+		var $ = layui.$;
+		var layer = layui.layer;
+		var btnc = $('#getcode');
+		var btnl = $('#getll');
+		var inputp = $('[name=phone]');
+		var inputc = $('[name=code]');
+		var index;
+		inputc.on('input', function(e){
+			if(this.value.trim() != ''){
+				btnl.removeClass('layui-btn-disabled');
+			}else{
+				btnl.addClass('layui-btn-disabled');
+			}
+		})
+
+		btnc.on('click', function(e){
+			if(inputp.val().trim() == ''){
+				layer.tips('请输入手机号码', inputp, {
+				  tips: 3,
+				  time: 2000
+				});
+				return false;
+			}
+			btnc.text('发送中');
+			btnc.addClass('layui-btn-disabled');
+			index = layer.load();
+			$.ajax({
+				url:'https://m.10010.com/god/AirCheckMessage/sendCaptcha',
+				type:'post',
+				dataType:'json',
+				data:{
+					phoneVal:inputp.val(),
+					type:21
+				},
+				success:function(datas){
+                    if(datas.RespCode == '0000'){
+                    	layer.msg('验证码已发送');
+                    }else{
+                    	layer.msg('验证码发送失败，请重试');
+                    }
+				},
+				error: function (err) {
+					layer.msg('验证码发送失败，请重试');
+				},
+				complete: function () {
+					btnc.text('获取验证码');
+					btnc.removeClass('layui-btn-disabled');
+					layer.close(index);
+				}
+			})
+		})
+		btnl.on('click', function(e){
+			if($(this).hasClass('layui-btn-disabled')){
+				return false;
+			}
+			index = layer.load();
+            $.ajax({
+                url:'https://m.10010.com/god/qingPiCard/flowExchange',
+                data:{
+                    number:inputp.val(),
+					type:21,
+                    captcha:inputc.val()
+                },
+                success:function(datas){
+					layer.msg(datas.respDesc || "领取成功，使用愉快");
+				},
+				error: function (err) {
+					layer.msg('领取失败，请稍后再试');
+				},
+				complete: function () {
+					layer.close(index);
+				}
+            });
+		})
+	})
+</script>
+</html>

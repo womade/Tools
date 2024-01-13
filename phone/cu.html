@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" href="./mdui.css">
+    <script src="./mdui.global.js"></script>
+    <title>手机号入网时间查询</title>
+  </head>
+  <body>
+
+<mdui-segmented-button-group full-width style="margin-bottom:18px" selects="single" value="CU">
+  <mdui-segmented-button value="CT" href="ct.html">电信用户</mdui-segmented-button>
+  <mdui-segmented-button value="CM" href="cm.html">移动用户</mdui-segmented-button>
+  <mdui-segmented-button value="CU" href="cu.html">联通用户</mdui-segmented-button>
+</mdui-segmented-button-group>
+
+<div id="container-wrapper" class="main">
+
+<BR><BR><BR>
+
+<h2>🤖 Andoid</h2>
+<mdui-button href="sms:10010?body=205" target="_blank">发送短信“205”查询</mdui-button>
+<mdui-button href="sms:10010?body=YHXX" target="_blank">发送短信“YHXX”查询</mdui-button>
+
+<BR><BR><BR><BR>
+
+<h2>🍎 iOS</h2>
+<mdui-button href="sms:10010&body=205" target="_blank">发送短信“205”查询</mdui-button>
+<mdui-button href="sms:10010&body=YHXX" target="_blank">发送短信“YHXX”查询</mdui-button>
+
+<BR><BR><BR><BR><BR><HR><BR><BR><BR>
+
+<mdui-button full-width href="http://wap.10010.com/mobileService/operationservice/getUserinfo.htm">点我打开联通网站查询</mdui-button>
+
+</div>
+
+  </body>
+</html>
