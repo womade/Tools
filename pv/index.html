@@ -32,7 +32,7 @@
                 <div class="container" align="center">
                   <ul class="navbar-brand" style="width: 100%">
                     <img
-                      src="./logo.svg"
+                      src="logo.svg"
                       alt="中國遠徵"
                       width="120"
                       height="38"
@@ -67,7 +67,7 @@
                           id="url"
                           name="url"
                           type="text"
-                          value="https://i.ssss.fun"
+                          value=""
                           placeholder="例如：https://i.ssss.fun"
                           style="width: 80%"
                         />
@@ -79,16 +79,29 @@
                         <input
                           class="form-control"
                           id="frequency"
-                          type="text"
-                          oninput="value=value.replace(/[^\d]/g,'')"
-                          value="6"
+                          type="number"
+                          value="10"
                           placeholder="请输入数值（单位：秒/次）"
                           style="width: 80%"
                         />
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-2 control-label"> 已刷次数： </label>
+                      <label class="col-sm-2 control-label"> 刷新次数： </label>
+                      <div class="col-sm-10">
+                        <input
+                          class="form-control"
+                          id="fresh-times"
+                          type="text"
+                          oninput="value=value.replace(/[^\d]/g,'')"
+                          value="1024"
+                          placeholder="请输入刷新次数"
+                          style="width: 80%"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label"> 完成次数： </label>
                       <div class="col-sm-10">
                         <input
                           class="form-control"
@@ -124,8 +137,14 @@
                       <label class="col-sm-2 control-label"> </label>
                       <div class="col-sm-12">
                         <div
+                          class="alert alert-success alert-dismissible text-center"
+                          id="successdiv"
+                          role="alert"
+                          style="display: none"
+                        ></div>
+                        <div
                           class="alert alert-danger alert-dismissible text-center"
-                          id="errdiv"
+                          id="errordiv"
                           role="alert"
                           style="display: none"
                         ></div>
@@ -140,7 +159,7 @@
                             height: 600px;
                             padding: 10px;
                             border: 1px solid #66be8c;
-                            background-image:url(./refresh.gif);
+                            background-image:url(refresh.gif);
                             background-repeat:no-repeat;
                             background-position:center center;
                           "
@@ -176,11 +195,10 @@
                       </h5>
                     </div>
                   </div>
-                  <script src="./script.js" type="text/javascript"></script>
+                  <script src="script.js" type="text/javascript"></script>
                 </div>
                 <div class="panel-footer"></div>
               </div>
-              <!-- content ed -->
             </div>
           </div>
         </div>

@@ -2,46 +2,61 @@
 var timer;
 var startButton;
 var endButton;
+var successdiv;
+var errordiv;
 
 $(document).ready(function () {
     startButton = $('#startButton');
     endButton = $('#endButton');
+    successdiv = $('#successdiv');
+    errordiv = $('#errordiv');
 });
 
 function refresh() {
     var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/).+/;
     var url = $('#url').val();
     if(!reg.test(url)){
-        showmsg("请输入合法的网址");
+        endRefresh();
+        showerror("🤔 请检查您输入的网址");
         return false;
-        
     }else{
+        $('#successdiv').hide();
+        $('#successdiv').text("");
         $('#errdiv').hide();
         $('#errdiv').text("");
     }
-
     if (run) {
         var frame = $('#frame');
         frame.attr('src', url);
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
+        checktimes();
     }
 }
 
+function checktimes() {
+    if (parseInt($('#fresh-times').val()) <= parseInt($('#times').val())) {
+        endRefresh();
+        showsuccess('😊 刷新任务已经完成啦~');
+    }else{
+        showsuccess('😊 交给我吧，玩儿去吧~');
+  }
+}
+
 function startRefresh() {
-
-
     run = true;
     try {
         startButton.hide();
         endButton.show();
+        successdiv.hide();
+        errordiv.hide();
         var frequency = parseInt($('#frequency').val());
         refresh();
         timer = setInterval("refresh()", frequency * 1000);
     } catch (Exception) {
         startButton.show();
         endButton.hide();
-        showmsg('设置错误');
+        showerror('🤔 请检查您设置的参数');
     }
 }
 
@@ -50,8 +65,16 @@ function endRefresh() {
     clearInterval(timer);
     startButton.show();
     endButton.hide();
+    successdiv.hide();
+    errordiv.hide();
 }
-function showmsg(msg) {
-    $('#errdiv').show();
-    $('#errdiv').text(msg);
+
+function showsuccess(msg) {
+    $('#successdiv').show();
+    $('#successdiv').text(msg);
+}
+
+function showerror(msg) {
+    $('#errordiv').show();
+    $('#errordiv').text(msg);
 }
