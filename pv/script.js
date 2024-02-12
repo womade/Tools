@@ -37,9 +37,9 @@ function refresh() {
 function checktimes() {
     if (parseInt($('#fresh-times').val()) <= parseInt($('#times').val())) {
         endRefresh();
-        showsuccess('😊 刷新任务已经完成啦~');
+        showsuccess('😊 刷新任务已完成啦~');
     }else{
-        showsuccess('😊 交给我吧，玩儿去吧~');
+        showsuccess('😊 交给我，玩儿去吧~');
   }
 }
 
@@ -56,7 +56,7 @@ function startRefresh() {
     } catch (Exception) {
         startButton.show();
         endButton.hide();
-        showerror('🤔 请检查您设置的参数');
+        showerror('⚠ 参数出错，刷新重试');
     }
 }
 
