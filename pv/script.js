@@ -35,7 +35,7 @@ function refresh() {
 }
 
 function checktimes() {
-    if (parseInt($('#fresh-times').val()) <= parseInt($('#times').val())) {
+    if (parseInt($('#refresh-tasks').val()) <= parseInt($('#times').val())) {
         endRefresh();
         showsuccess('😊 刷新任务已完成啦~');
     }else{
