@@ -17,7 +17,7 @@ function refresh() {
     var url = $('#url').val();
     if(!reg.test(url)){
         endRefresh();
-        showerror("🤔 请检查您输入的网址");
+        showerror("🤔 请检查您输入的网址……");
         return false;
     }else{
         $('#successdiv').hide();
@@ -94,7 +94,7 @@ async function fetchUserId() {
         }
         const data = await response.json();
         const userId = data.userid;
-        useridButton.value = userId ? userId : '未获取到用户ID';
+        useridButton.value = userId ? userId : '未获取到用户编号';
     } catch (error) {
         console.error('获取用户编号时出错:', error);
         useridButton.value = '获取失败';
