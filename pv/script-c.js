@@ -81,18 +81,22 @@ function showerror(msg) {
 }
 
 async function fetchUserId() {
-    const userEnteredUrl = encodeURIComponent(document.getElementById('url').value.trim());
-    const apiUrl = `https://api.ssss.fun/get/ccbft-userid.php?url=${userEnteredUrl}`; 
+    const urlInput = document.getElementById('url');
+    const useridButton = document.getElementById('useridButton');
+    useridButton.value = '';
+    useridButton.value = '获取中...';
+    const userEnteredUrl = encodeURIComponent(urlInput.value.trim());
+    const apiUrl = `https://api.ssss.fun/get/ccbft-userid.php?url=${userEnteredUrl}`;
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const userId = data.userid;                
-        document.getElementById('useridButton').value = userId;
+        const userId = data.userid;
+        useridButton.value = userId ? userId : '未获取到用户ID';
     } catch (error) {
         console.error('获取用户编号时出错:', error);
-        document.getElementById('useridButton').value = '获取失败';
+        useridButton.value = '获取失败';
     }
 }
