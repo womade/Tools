@@ -30,11 +30,12 @@
     window.onload = function() {
       var urlParams = new URLSearchParams(window.location.search);
       var imageUrl = urlParams.get('url');
+      var loadtime = urlParams.get('t') || 10;
       var timestamp = new Date().getTime();
       var screenWidth = window.screen.width;
       var screenHeight = window.screen.height;
       var modifiedUrl1 = "https://cors.ssss.fun/https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/1200/jpeg/?" + imageUrl + "#z=" + timestamp;
-      var modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/10/noanimate/" + imageUrl + "?z=" + timestamp;
+      var modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/" + loadtime + "/noanimate/" + imageUrl + "?z=" + timestamp;
       if (imageUrl) {
         document.getElementById('dynamicImage').src = modifiedUrl;
       } else {
