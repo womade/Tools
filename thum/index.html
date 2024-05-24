@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网页截图</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+  <div id="imageContainer">
+    <img id="dynamicImage" src="logo.png" alt="图片">
+  </div>
+  <script>
+    window.onload = function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var imageUrl = urlParams.get('url');
+      var timestamp = new Date().getTime();
+      var screenWidth = window.screen.width;
+      var screenHeight = window.screen.height;
+      var modifiedUrl1 = "https://cors.ssss.fun/https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/1200/jpeg/?" + imageUrl + "#z=" + timestamp;
+      var modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/10/noanimate/" + imageUrl + "?z=" + timestamp;
+      if (imageUrl) {
+        document.getElementById('dynamicImage').src = modifiedUrl;
+      } else {
+        console.error('图片链接未提供');
+      }
+    };
+  </script>
+</body>
+</html>
