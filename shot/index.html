@@ -55,6 +55,9 @@
                 case 5:
                     modifiedUrl = "https://urlscan.io/liveshot/?width=" + screenWidth + "&height=" + screenHeight + "&url=" + imageUrl + "&z=" + timestamp;
                     break;
+                case 6:
+                    modifiedUrl = "https://s0.wp.com/mshots/v1/" + imageUrl + "?z=" + timestamp + "/?w=" + screenWidth + "&h=" + screenHeight;
+                    break;
                 default:
                     modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl;
             }
