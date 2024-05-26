@@ -41,10 +41,10 @@
             var modifiedUrl;
             switch (servUrl) {
                 case 1:
-                    modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl;
+                    modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl + "?z=" + timestamp;
                     break;
                 case 2:
-                    modifiedUrl = "https://cors.eu.org/https://mini.site-shot.com/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl;
+                    modifiedUrl = "https://cors.eu.org/https://mini.site-shot.com/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl + "?z=" + timestamp;
                     break;
                 case 3:
                     modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/" + loadtime + "/noanimate/" + imageUrl + "?z=" + timestamp;
@@ -66,6 +66,7 @@
                 document.getElementById('dynamicImage').src = modifiedUrl;
             } else {
                 console.error('图片链接未提供');
+                modifiedUrl = "https://i.ssss.fun/HI.png"
             }
         };
     </script>
