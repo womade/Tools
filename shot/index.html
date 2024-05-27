@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="imageContainer">
-        <img id="dynamicImage" src="logo.png" alt="图片加载中...">
+        <img id="dynamicImage" src="logo.png" alt="图片">
     </div>
     <script>
         window.onload = function() {
@@ -60,9 +60,7 @@
                 default:
                     modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl;
             }
-
             var dynamicImage = document.getElementById('dynamicImage');
-
             if (imageUrl) {
                 dynamicImage.src = modifiedUrl;
                 dynamicImage.onerror = function() {
