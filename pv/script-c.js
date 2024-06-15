@@ -57,7 +57,7 @@ function startRefresh() {
     } catch (Exception) {
         startButton.show();
         endButton.hide();
-        showerror('⚠ 参数出错，刷新重试');
+        showerror('⚠ 参数出错，刷新重试!');
     }
 }
 
@@ -78,6 +78,10 @@ function cleanAll() {
     document.getElementById('times').value = '0';
     useridButton.value = '用户编号';
     showsuccess('🆑 已成功清空配置啦~');
+    var successDivElement = document.getElementById('successdiv');
+    setTimeout(function() {
+        successDivElement.style.display = 'none';
+    }, 3000);
 }
 
 function showsuccess(msg) {
