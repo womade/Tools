@@ -56,7 +56,7 @@ function startRefresh() {
     } catch (Exception) {
         startButton.show();
         endButton.hide();
-        showerror('⚠ 参数出错，刷新重试');
+        showerror('⚠ 参数出错，刷新重试！');
     }
 }
 
@@ -67,6 +67,15 @@ function endRefresh() {
     endButton.hide();
     successdiv.hide();
     errordiv.hide();
+}
+
+function cleanAll() {
+    endRefresh();
+    document.getElementById('url').value = '';
+    document.getElementById('frequency').value = '10';
+    document.getElementById('task-count').value = '1024';
+    document.getElementById('times').value = '0';
+    showsuccess('🆑 已成功清空配置啦~');
 }
 
 function showsuccess(msg) {
