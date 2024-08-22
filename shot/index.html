@@ -43,7 +43,7 @@
                     modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl + "?z=" + timestamp;
                     break;
                 case 2:
-                    modifiedUrl = "http://s-shot.ssss.fun/screenshot?url=" + imageUrl + "&m=file&w=1&h=1&t=" + loadtime + "&z=" + timestamp;
+                    modifiedUrl = "https://s-shot.ssss.fun/screenshot?url=" + imageUrl + "&m=file&w=1&h=1&t=" + loadtime + "&z=" + timestamp;
                     break;
                 case 3:
                     modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/" + loadtime + "/noanimate/" + imageUrl + "?z=" + timestamp;
@@ -58,7 +58,7 @@
                     modifiedUrl = "https://s0.wp.com/mshots/v1/" + imageUrl + "?z=" + timestamp + "/?w=" + screenWidth + "&h=" + screenHeight;
                     break;
                 default:
-                    modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl;
+                    modifiedUrl = "https://s-shot.ssss.fun/screenshot?url=" + imageUrl + "&m=file" + "&w=" + screenWidth + "&h=" + screenHeight + "&t=" + loadtime;
             }
             var dynamicImage = document.getElementById('dynamicImage');
             if (imageUrl) {
