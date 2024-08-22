@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网页截图</title>
+    <title>🧩 网页截图</title>
     <style>
         body, html {
             margin: 0;
@@ -43,10 +43,10 @@
                     modifiedUrl = "https://s-shot.ssss.fun/screenshot?url=" + imageUrl + "&m=file&w=1&h=1&t=" + loadtime + "&z=" + timestamp;
                     break;
                 case 1:
-                    modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl + "?z=" + timestamp;
+                    modifiedUrl = "https://s-shot.ssss.fun/screenshot?url=" + imageUrl + "&m=file" + "&w=" + screenWidth + "&h=" + screenHeight + "&t=" + loadtime;
                     break;
                 case 2:
-                    modifiedUrl = "https://s-shot.ssss.fun/screenshot?url=" + imageUrl + "&m=file" + "&w=" + screenWidth + "&h=" + screenHeight + "&t=" + loadtime;
+                    modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl + "?z=" + timestamp;
                     break;
                 case 3:
                     modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/" + loadtime + "/noanimate/" + imageUrl + "?z=" + timestamp;
