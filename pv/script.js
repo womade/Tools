@@ -75,7 +75,6 @@ function cleanAll() {
     document.getElementById('frequency').value = '10';
     document.getElementById('task-count').value = '1024';
     document.getElementById('times').value = '0';
-    useridButton.value = '用户编号';
     showsuccess('🆑 已成功清空配置啦~');
     var successDivElement = document.getElementById('successdiv');
     setTimeout(function() {
