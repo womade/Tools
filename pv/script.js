@@ -66,7 +66,7 @@ function startRefresh() {
 }
 
 function updateFrequency() {
-    $('input[id="Frequency"]').change(function() {
+    $('input[id="frequency"]').change(function() {
         if (run) {
             clearInterval(timer);
             var newFrequency = parseInt($('#frequency').val());
