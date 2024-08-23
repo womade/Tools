@@ -4,6 +4,8 @@ var startButton;
 var endButton;
 var successdiv;
 var errordiv;
+var noSleep = new NoSleep();
+var wakeLockEnabled = false;
 
 $(document).ready(function () {
     startButton = $('#startButton');
@@ -17,7 +19,7 @@ function refresh() {
     var url = $('#url').val();
     if(!reg.test(url)){
         endRefresh();
-        showerror("🤔 请检查您输入的网址");
+        showerror("🤔 请检查您输入的网址……");
         return false;
     }else{
         $('#successdiv').hide();
@@ -30,6 +32,8 @@ function refresh() {
         frame.attr('src', url);
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
+        updateRefreshSpeed();
+        updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
         checktimes();
     }
 }
@@ -37,9 +41,9 @@ function refresh() {
 function checktimes() {
     if (parseInt($('#task-count').val()) <= parseInt($('#times').val())) {
         endRefresh();
-        showsuccess('😊 刷新任务已完成啦~');
+        showsuccess('😉 刷新任务已完成啦~');
     }else{
-        showsuccess('😊 交给我，玩儿去吧~');
+        showsuccess('😉 交给我，玩儿去吧~');
   }
 }
 
@@ -50,6 +54,7 @@ function startRefresh() {
         endButton.show();
         successdiv.hide();
         errordiv.hide();
+        noSleep.enable();
         var frequency = parseInt($('#frequency').val());
         refresh();
         timer = setInterval("refresh()", frequency * 1000);
@@ -60,6 +65,22 @@ function startRefresh() {
     }
 }
 
+function updateRefreshSpeed() {
+    $('input[name="refreshSpeed"]').change(function() {
+        if (run) {
+            clearInterval(timer);
+            var newFrequency = getRefreshSpeed();
+            timer = setInterval(refresh, newFrequency * 1000);
+        }
+    });
+}
+
+function updateProgress(currentTimes, totalTasks) {
+    var percentage = (currentTimes / totalTasks) * 100;
+    var percentageRounded = parseFloat(percentage.toFixed(2));
+    $('.progress-bar').css('width', percentageRounded + '%').text(percentageRounded + '%');
+}
+
 function endRefresh() {
     run = false;
     clearInterval(timer);
@@ -67,6 +88,7 @@ function endRefresh() {
     endButton.hide();
     successdiv.hide();
     errordiv.hide();
+    noSleep.disable();
 }
 
 function cleanAll() {
