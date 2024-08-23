@@ -93,6 +93,7 @@ function endRefresh() {
 
 function cleanAll() {
     endRefresh();
+    updateProgress(0, 100);
     document.getElementById('url').value = '';
     document.getElementById('frequency').value = '10';
     document.getElementById('task-count').value = '1024';
