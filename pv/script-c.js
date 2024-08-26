@@ -4,6 +4,8 @@ var startButton;
 var endButton;
 var successdiv;
 var errordiv;
+var noSleep = new NoSleep();
+var wakeLockEnabled = false;
 
 $(document).ready(function () {
     startButton = $('#startButton');
@@ -27,9 +29,12 @@ function refresh() {
     }
     if (run) {
         var frame = $('#frame');
+        var frequency = getRefreshSpeed();
         frame.attr('src', url);
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
+        updateRefreshSpeed();
+        updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
         checktimes();
     }
 }
@@ -37,10 +42,36 @@ function refresh() {
 function checktimes() {
     if (parseInt($('#task-count').val()) <= parseInt($('#times').val())) {
         endRefresh();
-        showsuccess('😊 刷新任务已完成啦~');
+        showsuccess('😉 刷新任务已完成啦~');
     }else{
-        showsuccess('😊 交给我，玩儿去吧~');
+        showsuccess('😉 交给我，玩儿去吧~');
   }
+}
+
+function getRefreshSpeed() {
+  var radios = document.getElementsByName('refreshSpeed');
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      return parseInt(radios[i].value);
+    }
+  }
+  return 6;
+}
+
+function updateRefreshSpeed() {
+    $('input[name="refreshSpeed"]').change(function() {
+        if (run) {
+            clearInterval(timer);
+            var newFrequency = getRefreshSpeed();
+            timer = setInterval(refresh, newFrequency * 1000);
+        }
+    });
+}
+
+function updateProgress(currentTimes, totalTasks) {
+    var percentage = (currentTimes / totalTasks) * 100;
+    var percentageRounded = parseFloat(percentage.toFixed(2));
+    $('.progress-bar').css('width', percentageRounded + '%').text(percentageRounded + '%');
 }
 
 function startRefresh() {
@@ -50,14 +81,15 @@ function startRefresh() {
         endButton.show();
         successdiv.hide();
         errordiv.hide();
-        var frequency = parseInt($('#frequency').val());
+        noSleep.enable();
+        var frequency = getRefreshSpeed();
         fetchUserId();
         refresh();
         timer = setInterval("refresh()", frequency * 1000);
     } catch (Exception) {
         startButton.show();
         endButton.hide();
-        showerror('⚠ 参数出错，刷新重试!');
+        showerror('⚠ 参数出错，刷新重试');
     }
 }
 
@@ -68,12 +100,13 @@ function endRefresh() {
     endButton.hide();
     successdiv.hide();
     errordiv.hide();
+    noSleep.disable();
 }
 
 function cleanAll() {
     endRefresh();
+    updateProgress(0, 100);
     document.getElementById('url').value = '';
-    document.getElementById('frequency').value = '10';
     document.getElementById('task-count').value = '1024';
     document.getElementById('times').value = '0';
     useridButton.value = '用户编号';
@@ -100,7 +133,9 @@ async function fetchUserId() {
     useridButton.value = '';
     useridButton.value = '获取中...';
     const userEnteredUrl = encodeURIComponent(urlInput.value.trim());
-    const apiUrl = `https://api.ssss.fun/get/ccbft-userid.php?url=${userEnteredUrl}`;
+    const count = parseInt($('#task-count').val());
+    const speed = getRefreshSpeed();
+    const apiUrl = `https://api.ssss.fun/get/ccbft-userid.php?url=${userEnteredUrl}&count=${count}&speed=${speed}`;
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
@@ -108,9 +143,40 @@ async function fetchUserId() {
         }
         const data = await response.json();
         const userId = data.userid;
-        useridButton.value = userId ? userId : '未获取到用户编号';
+        useridButton.value = userId ? userId : '未知用户';
     } catch (error) {
         console.error('获取用户编号时出错:', error);
         useridButton.value = '获取失败';
     }
 }
+
+document.getElementById('qrFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) {
+        return;
+    }  
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.getElementById('qrCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+            if (code) {
+                document.getElementById('url').value = code.data;
+                errordiv.hide();
+                showsuccess('😉 解码成功，可开刷啦~');
+            } else {
+                document.getElementById('url').value = 'No QR code found or unable to decode.';
+                successdiv.hide();
+                showerror("☹️ 解码失败，检查一下？");
+            }
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+});
