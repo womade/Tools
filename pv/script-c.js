@@ -7,6 +7,7 @@ var errordiv;
 var noSleep = new NoSleep();
 var wakeLockEnabled = false;
 
+
 $(document).ready(function () {
     startButton = $('#startButton');
     endButton = $('#endButton');
@@ -30,11 +31,12 @@ function refresh() {
     if (run) {
         var frame = $('#frame');
         var frequency = getRefreshSpeed();
-        frame.attr('src', url);
+        frame.attr('src', 'url);
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
         updateRefreshSpeed();
         updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
+        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
         checktimes();
     }
 }
@@ -43,6 +45,7 @@ function checktimes() {
     if (parseInt($('#task-count').val()) <= parseInt($('#times').val())) {
         endRefresh();
         showsuccess('😉 刷新任务已完成啦~');
+        $('#remainingTime').text('00:00:00');
     }else{
         showsuccess('😉 交给我，玩儿去吧~');
   }
@@ -74,9 +77,31 @@ function updateProgress(currentTimes, totalTasks) {
     $('.progress-bar').css('width', percentageRounded + '%').text(percentageRounded + '%');
 }
 
+var remainingTasks = parseInt($('#task-count').val()) - parseInt($('#times').val());
+
+function updateDisplayTime(remainingSeconds) {
+    let hours = Math.floor(remainingSeconds / 3600);
+    let minutes = Math.floor((remainingSeconds % 3600) / 60);
+    let seconds = remainingSeconds % 60;
+    let formattedTime = hours.toString().padStart(2, '0') + ":" +
+                        minutes.toString().padStart(2, '0') + ":" +
+                        seconds.toString().padStart(2, '0');
+    $('#remainingTime').text(formattedTime);
+}
+
 function startRefresh() {
     run = true;
     try {
+        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
+        countdownTimer = setInterval(function() {
+            if (remainingSeconds > 0) {
+                remainingSeconds--;
+                updateDisplayTime(remainingSeconds);
+                } else {
+                    clearInterval(countdownTimer);
+                    //$('#remainingTime').text('00:00:00');
+                }
+        }, 1000);
         startButton.hide();
         endButton.show();
         successdiv.hide();
@@ -115,6 +140,7 @@ function cleanAll() {
     setTimeout(function() {
         successDivElement.style.display = 'none';
     }, 3000);
+    $('#remainingTime').text('00:00:00');
 }
 
 function showsuccess(msg) {
