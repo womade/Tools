@@ -31,7 +31,7 @@ function refresh() {
     if (run) {
         var frame = $('#frame');
         var frequency = getRefreshSpeed();
-        frame.attr('src', 'url);
+        frame.attr('src', url);
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
         updateRefreshSpeed();
