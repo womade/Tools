@@ -31,12 +31,11 @@ function refresh() {
     if (run) {
         var frame = $('#frame');
         var frequency = getRefreshSpeed();
-        frame.attr('src', url);
+        frame.attr('src', url;
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
         updateRefreshSpeed();
         updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
-        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
         checktimes();
     }
 }
@@ -67,6 +66,7 @@ function updateRefreshSpeed() {
             clearInterval(timer);
             var newFrequency = getRefreshSpeed();
             timer = setInterval(refresh, newFrequency * 1000);
+            remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
         }
     });
 }
@@ -121,6 +121,7 @@ function startRefresh() {
 function endRefresh() {
     run = false;
     clearInterval(timer);
+    clearInterval(countdownTimer);
     startButton.show();
     endButton.hide();
     successdiv.hide();

@@ -1,4 +1,4 @@
-﻿var run = false;
+var run = false;
 var timer;
 var startButton;
 var endButton;
@@ -34,6 +34,7 @@ function refresh() {
         times.val(parseInt(times.val()) + 1);
         updateFrequency();
         updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
+        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * parseInt($('#frequency').val());
         checktimes();
     }
 }
@@ -42,27 +43,10 @@ function checktimes() {
     if (parseInt($('#task-count').val()) <= parseInt($('#times').val())) {
         endRefresh();
         showsuccess('😉 刷新任务已完成啦~');
+        $('#remainingTime').text('00:00:00');
     }else{
         showsuccess('😉 交给我，玩儿去吧~');
   }
-}
-
-function startRefresh() {
-    run = true;
-    try {
-        startButton.hide();
-        endButton.show();
-        successdiv.hide();
-        errordiv.hide();
-        noSleep.enable();
-        var frequency = parseInt($('#frequency').val());
-        refresh();
-        timer = setInterval("refresh()", frequency * 1000);
-    } catch (Exception) {
-        startButton.show();
-        endButton.hide();
-        showerror('⚠ 参数出错，刷新重试！');
-    }
 }
 
 function updateFrequency() {
@@ -81,9 +65,50 @@ function updateProgress(currentTimes, totalTasks) {
     $('.progress-bar').css('width', percentageRounded + '%').text(percentageRounded + '%');
 }
 
+var remainingTasks = parseInt($('#task-count').val()) - parseInt($('#times').val());
+
+function updateDisplayTime(remainingSeconds) {
+    let hours = Math.floor(remainingSeconds / 3600);
+    let minutes = Math.floor((remainingSeconds % 3600) / 60);
+    let seconds = remainingSeconds % 60;
+    let formattedTime = hours.toString().padStart(2, '0') + ":" +
+                        minutes.toString().padStart(2, '0') + ":" +
+                        seconds.toString().padStart(2, '0');
+    $('#remainingTime').text(formattedTime);
+}
+
+function startRefresh() {
+    run = true;
+    try {
+        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * parseInt($('#frequency').val());
+        countdownTimer = setInterval(function() {
+            if (remainingSeconds > 0) {
+                remainingSeconds--;
+                updateDisplayTime(remainingSeconds);
+                } else {
+                    clearInterval(countdownTimer);
+                    //$('#remainingTime').text('00:00:00');
+                }
+        }, 1000);
+        startButton.hide();
+        endButton.show();
+        successdiv.hide();
+        errordiv.hide();
+        noSleep.enable();
+        var frequency = parseInt($('#frequency').val());
+        refresh();
+        timer = setInterval("refresh()", frequency * 1000);
+    } catch (Exception) {
+        startButton.show();
+        endButton.hide();
+        showerror('⚠ 参数出错，刷新重试！');
+    }
+}
+
 function endRefresh() {
     run = false;
     clearInterval(timer);
+    clearInterval(countdownTimer);
     startButton.show();
     endButton.hide();
     successdiv.hide();
@@ -103,6 +128,7 @@ function cleanAll() {
     setTimeout(function() {
         successDivElement.style.display = 'none';
     }, 3000);
+    $('#remainingTime').text('00:00:00');
 }
 
 function showsuccess(msg) {
