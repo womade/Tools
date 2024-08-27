@@ -65,7 +65,7 @@ function updateFrequency() {
 function updateRefreshTasks() {
     $('input[id="task-count"]').change(function() {
         if (run) {
-            remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
+            remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * parseInt($('#frequency').val());
             updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
         }
     });
