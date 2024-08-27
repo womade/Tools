@@ -31,10 +31,11 @@ function refresh() {
     if (run) {
         var frame = $('#frame');
         var frequency = getRefreshSpeed();
-        frame.attr('src', url);
+        frame.attr('src', url;
         var times = $('#times');
         times.val(parseInt(times.val()) + 1);
         updateRefreshSpeed();
+        updateRefreshTasks();
         updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
         checktimes();
     }
@@ -65,7 +66,15 @@ function updateRefreshSpeed() {
         if (run) {
             clearInterval(timer);
             var newFrequency = getRefreshSpeed();
+            remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
             timer = setInterval(refresh, newFrequency * 1000);
+        }
+    });
+}
+
+function updateRefreshTasks() {
+    $('input[id="task-count"]').change(function() {
+        if (run) {
             remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
         }
     });
