@@ -88,8 +88,6 @@ function updateProgress(currentTimes, totalTasks) {
     $('.progress-bar').css('width', percentageRounded + '%').text(percentageRounded + '%');
 }
 
-var remainingTasks = parseInt($('#task-count').val()) - parseInt($('#times').val());
-
 function updateDisplayTime(remainingSeconds) {
     let hours = Math.floor(remainingSeconds / 3600);
     let minutes = Math.floor((remainingSeconds % 3600) / 60);
@@ -103,7 +101,7 @@ function updateDisplayTime(remainingSeconds) {
 function startRefresh() {
     run = true;
     try {
-        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
+        remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val()) -1) * getRefreshSpeed();
         countdownTimer = setInterval(function() {
             if (remainingSeconds > 0) {
                 remainingSeconds--;
