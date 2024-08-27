@@ -67,6 +67,7 @@ function updateRefreshSpeed() {
             clearInterval(timer);
             var newFrequency = getRefreshSpeed();
             remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
+            updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
             timer = setInterval(refresh, newFrequency * 1000);
         }
     });
@@ -76,6 +77,7 @@ function updateRefreshTasks() {
     $('input[id="task-count"]').change(function() {
         if (run) {
             remainingSeconds = (parseInt($('#task-count').val()) - parseInt($('#times').val())) * getRefreshSpeed();
+            updateProgress(parseInt($('#times').val()), parseInt($('#task-count').val()));
         }
     });
 }
