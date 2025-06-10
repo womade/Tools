@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧩 网页截图</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #imageContainer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="imageContainer">
+        <img id="dynamicImage" src="logo.png" alt="图片加载中...">
+    </div>
+    <script>
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var imageUrl = urlParams.get('url');
+            var defaultImageError = "logo-error.png";
+            var defaultImageNone = "logo-nourl.png";
+            var servUrl = parseInt(urlParams.get('s')) || 1;
+            var loadtime = urlParams.get('t') || 10;
+            var timestamp = new Date().getTime();
+            var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+            var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            var modifiedUrl;
+            switch (servUrl) {
+                case 10:
+                    modifiedUrl = "https://shot.ssss.fun/?url=" + imageUrl + "&m=0&w=1&h=1&t=" + loadtime + "&z=" + timestamp;
+                    break;
+                case 1:
+                    modifiedUrl = "https://shot.ssss.fun/?url=" + imageUrl + "&w=" + screenWidth + "&h=" + screenHeight + "&t=" + loadtime + "&z=" + timestamp;
+                    break;
+                case 2:
+                    modifiedUrl = "https://mini.s-shot.ru/" + screenWidth + "x" + screenHeight + "/" + screenWidth + "/jpeg/?" + imageUrl + "?z=" + timestamp;
+                    break;
+                case 3:
+                    modifiedUrl = "https://image.thum.io/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/" + loadtime + "/noanimate/" + imageUrl + "?z=" + timestamp;
+                    break;
+                case 4:
+                    modifiedUrl = "https://cors.ssss.fun/https://image.yuanzheng.workers.dev/get/width/" + screenWidth + "/crop/1200/allowJPG/wait/" + loadtime + "/noanimate/" + imageUrl + "?z=" + timestamp;
+                    break;
+                case 5:
+                    modifiedUrl = "https://urlscan.io/liveshot/?width=" + screenWidth + "&height=" + screenHeight + "&url=" + imageUrl + "?z=" + timestamp;
+                    break;
+                case 6:
+                    modifiedUrl = "https://s0.wp.com/mshots/v1/" + imageUrl + "?z=" + timestamp + "/?w=" + screenWidth + "&h=" + screenHeight;
+                    break;
+                default:
+                    modifiedUrl = "https://shot.ssss.fun/?url=" + imageUrl + "&w=" + screenWidth + "&h=" + screenHeight + "&t=" + loadtime;
+            }
+            var dynamicImage = document.getElementById('dynamicImage');
+            if (imageUrl) {
+                dynamicImage.src = modifiedUrl;
+                dynamicImage.onerror = function() {
+                    this.src = defaultImageError;
+                };
+            } else {
+                console.error('图片链接未提供');
+                dynamicImage.src = defaultImageNone;
+            }
+        };
+    </script>
+</body>
+</html>

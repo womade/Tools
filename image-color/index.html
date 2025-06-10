@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>图片颜色提取</title>
+
+<link rel="stylesheet" href="./css/iconfont.css" type="text/css" />
+
+<link rel="stylesheet" href="./css/style.css" type="text/css" />
+
+</head>
+<body>
+<div id="wrapper">
+  <div class="choseImg">
+    <label for="inputImg" id="inputImg_label">
+      <span class="iconfont icon-shangchuan"></span>
+    </label>
+    <input type="file" id="inputImg" onChange="uploadImage(this)">
+    <div class="colorShow">
+      <div class="showRGBA">
+        <span>rgba:</span>
+        <span class="rgb"></span>
+      </div>
+      <div class="showRHex">
+        <span>#16:</span>
+        <span class="sixteen"></span>
+      </div>
+    </div>
+  </div>
+  <canvas class="imgCanvas" width="800" height="680">
+
+  </canvas>
+</div>
+
+<script src="./js/script.js"></script>
+
+</body>
+</html>

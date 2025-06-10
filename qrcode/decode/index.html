@@ -1,0 +1,318 @@
+<html style="height: 100%"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="二维码扫描器，二维码扫描，二维码解码器，二维码解码，免费二维码扫描器">
+<meta name="description" content="在线二维码扫描器，二维码解码器，支持在线扫描二维码图片，打开二维码网址或者使用摄像头拍照获取二维码，解码二维码中包含的信息。">
+
+    <title>在线二维码扫描器</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.7.6/dist/css/layui.css" media="all">
+    <link rel="stylesheet" href="https://www.lddgo.net/css/main-4277c1bc054021b2d521e6f9670a3bcf.css" type="text/css">
+    
+<script type="text/javascript" src="https://www.lddgo.net/js/base/common_util-41a2e6976398cfa8de54c771605c49c0.js" charset="UTF-8"></script>
+
+<link id="layuicss-laydate" rel="stylesheet" href="https://www.lddgo.net/layui/css/modules/laydate/default/laydate.css?v=5.0.9" media="all"><link id="layuicss-layer" rel="stylesheet" href="https://www.lddgo.net/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all"><link id="layuicss-skincodecss" rel="stylesheet" href="https://www.lddgo.net/layui/css/modules/code.css" media="all"></head>
+
+<body class="layui-layout-body" style="height:100%; overflow: auto;">
+
+
+    <div>
+    <style type="text/css">
+
+        @media screen and (max-width: 768px) {
+            .normal_site_title_menu_zh {
+                display: unset;
+                position: absolute;
+                top: 16px;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 20px;
+                left: calc(50vw - 75px);
+                cursor: pointer;
+            }
+
+            .normal_site_title_menu_en {
+                display: unset;
+                position: absolute;
+                top: 18px;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 20px;
+                left: calc(50vw - 70px);
+                cursor: pointer;
+            }
+        }
+
+    </style>
+
+
+
+
+    </div>
+
+</div>
+
+    <div class="main_content" style="min-height: calc(100% - 130px)">
+
+        <style type="text/css">
+            #inputUrl {
+                display: inline-block;
+                width: calc(100% - 110px);
+            }
+        </style>
+
+        <div>
+
+            <div>
+
+    
+
+    <div>
+        <h1 class="main_title">在线二维码扫描器</h1>
+    </div>
+
+    
+
+    <div style="margin-top: 16px;margin-bottom: 20px;">
+        <hr>
+    </div>
+    
+
+</div>
+
+            <div>
+                <div class="layui-tab layui-tab-brief" lay-filter="scannerTab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">上传二维码图片</li>
+                        <li>打开二维码网址</li>
+                        <li>摄像头扫描二维码</li>
+                    </ul>
+                    <div class="layui-tab-content" style="padding-top: 30px;">
+                        <div class="layui-tab-item layui-show">
+                            <div>
+                                <div class="layui-upload-drag" id="fileContainer" style="display: block;height: 150px">
+                                    <div style="height: 30px"></div>
+                                    <i class="layui-icon"></i>
+                                    <p>点击选择，或将图片拖拽到此处</p>
+                                </div><input class="layui-upload-file" type="file" accept="" name="file">
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div>
+
+                                <div>
+                                    <blockquote class="layui-elem-quote"> 说明：请确保二维码图片地址支持跨域和HTTPS协议访问。如果不支持，请先下载到本地，然后使用上传二维码图片解码。</blockquote>
+                                </div>
+
+                                <div class="layui-form-item" style="margin-top: 20px;">
+                                    <div class="layui-input-block" style="margin-left:0px">
+                                        <input type="text" name="inputUrl" id="inputUrl" autocomplete="off" placeholder="二维码图片网址" class="layui-input">
+
+                                        <button class="layui-btn" id="startDecode" style="position:relative;top:-2px;width:100px;">解码</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div>
+                                <div id="loadingMessage">
+                                    <i class="layui-icon layui-icon-video" style="color: #009688;"></i>
+                                    <span>打开摄像头失败</span>
+                                </div>
+                                <canvas id="canvas" hidden=""></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="decodeContainer" style="display: none;padding: 20px;">
+                <div id="decodeResult" style="background-color: #eeeeee;line-height: 30px;padding: 10px;"></div>
+                <div style="text-align: center;margin-top: 20px;">
+                    <button type="button" class="layui-btn" style="width: 100px;" id="startCopy" data-clipboard-target="#decodeResult">复制</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div style="margin-bottom: 30px;">
+    <div>
+
+        <input type="hidden" id="toolID" name="toolID" value="56">
+        <input type="hidden" id="toolFavorite" name="toolFavorite" value="false">
+        <fieldset class="layui-elem-field  layui-field-title" style="margin-top:30px;">
+            <legend>在线二维码扫描器-工具简介</legend>
+            
+        </fieldset>
+
+        <div>
+            <p>在线二维码扫描器，二维码解码器，支持在线扫描二维码图片，打开二维码网址或者使用摄像头拍照获取二维码，解码二维码中包含的信息。</p>
+            
+        </div>
+
+    </div>
+</div>
+
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>在线二维码扫描器-使用说明</legend>
+        </fieldset>
+
+        <div id="useNote">
+
+            
+
+            <div>
+                <div>
+                    在线二维码扫描器，支持在线扫描识别二维码，解码二维码中的数据信息。支持上传二维码图片，打开二维码网址，或者识别摄像头中拍摄的二维码信息。
+                </div>
+                <ol>
+                    <li>
+                        上传二维码图片：上传本地二维码图片文件，识别后，将弹出二维码中包含的数据信息。
+                    </li>
+                    <li>
+                        打开二维码网址：加载网址对应的二维码图片，解码其中包含的数据信息。
+                    </li>
+                    <li>
+                        摄像头扫描二维码：使用设备的摄像头，实时识别拍摄的二维码信息，识别到二维码信息后，自动停止摄像头的访问。
+                    </li>
+                </ol>
+            </div>
+
+            
+
+        </div>
+
+        <div style="margin-bottom:30px;margin-top:30px;">
+
+
+</div>
+
+    </div>
+
+    <div>
+    <style type="text/css">
+        @media screen and (max-width: 768px) {
+            .footer_block_area {
+                display: block;
+            }
+
+            .lang_common_footer_margin_adjust {
+                margin-left: unset !important;
+                margin-top: 15px;
+            }
+
+            .adjust_footer_height {
+                height: 210px !important;
+            }
+        }
+    </style>
+    
+</div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/layui@2.7.6/dist/layui.js" charset="UTF-8"></script>
+<script type="text/javascript" src="https://www.lddgo.net/js/third/base/clipboard.min-af8ab36589315582ccdd82f22e84bffb.js"></script>
+<script type="text/javascript" src="https://www.lddgo.net/js/tool/image/qrcode-7772f46464e61160b003152fde86d5d5.js" charset="UTF-8"></script>
+<script type="text/javascript" src="https://www.lddgo.net/js/third/tool/download.min-174a37b274f8b0a49164cdaed0602302.js" charset="UTF-8"></script>
+<script type="text/javascript" src="https://www.lddgo.net/js/third/jsqr/jsQR-59a7abb34cc90591117318e2b6fc7735.js" charset="UTF-8"></script>
+<script type="text/javascript" src="https://www.lddgo.net/js/base/tool_note-d04ad927d8a6a885815fea4cef742af9.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    registerQrCodeScannerEvent();
+</script>
+
+<div>
+    <script type="text/javascript" src="https://www.lddgo.net/js/third/base/clipboard.min-af8ab36589315582ccdd82f22e84bffb.js"></script>
+    <script type="text/javascript">
+        function initCopyToolLink() {
+            if (!ClipboardJS) {
+                return;
+            }
+            let copyToolLinkStaticElem = document.getElementById("copyToolLinkStatic");
+            if (!copyToolLinkStaticElem) {
+                return;
+            }
+            const clipboard = new ClipboardJS(copyToolLinkStaticElem, {
+                text: function (trigger) {
+                    return window.location.href;
+                },
+            });
+            clipboard.on('success', function (e) {
+                layui.layer.msg(getLangMsg("user.operator.copySuccess"));
+            });
+        }
+
+        function initToolNoteIframe() {
+            try {
+                let toolNoteIframe = document.getElementById("toolNoteIframe");
+                if (!toolNoteIframe) {
+                    return;
+                }
+                toolNoteIframe.onload = function () {
+                    toolNoteIframe.contentWindow.setParentLayui(layui);
+                };
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        function saveToolHistory() {
+            try {
+                let $ = layui.$;
+                let toolID = $("#toolID").val();
+                if (!toolID) {
+                    return;
+                }
+                const MAX_HISTORY_TOOL_COUNT = 3;
+                let url = window.location.href;
+                let title = document.title;
+                let lastUseToolTable = "lastUseToolTable";
+                let lastUseToolKey = "lastUseToolKey";
+                let historyArr = null;
+                let historyTable = layui.data(lastUseToolTable);
+                if (historyTable) {
+                    historyArr = historyTable[lastUseToolKey];
+                }
+                if (historyArr) {
+                    try {
+                        historyArr = JSON.parse(historyArr);
+                        let toolIndex = historyArr.findIndex(item => item.toolID === toolID);
+                        if (toolIndex >= 0) {  //已经有该工具
+                            historyArr.splice(toolIndex, 1);
+                        }
+                        if (historyArr.length >= MAX_HISTORY_TOOL_COUNT) {
+                            historyArr.splice(2);
+                        }
+                    } catch (e) {
+                        historyArr = [];
+                    }
+                } else {
+                    historyArr = [];
+                }
+                historyArr.splice(0, 0, {
+                    toolID: toolID,
+                    title: title,
+                    url: url,
+                });
+                let historyArrJson = JSON.stringify(historyArr);
+                layui.data(lastUseToolTable, {
+                    key: lastUseToolKey,
+                    value: historyArrJson,
+                })
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        function initBeforeBody() {
+            initCopyToolLink();
+            initToolNoteIframe();
+            saveToolHistory();
+        }
+
+        initBeforeBody();
+    </script>
+    
+</div>
+
+
+</body></html>
